@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>V-on</title>
+	<style>
+		canvas{
+			border: 1px solid red;
+			width: 350px;
+			height: 200px;
+		}
+		canvas:hover{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="MyApp">
+		<h1>Vue Js la directive v-on</h1>
+		<Button v-on:click="augmente">Augmenter</Button>
+		<Button v-on:click="diminue" >Dimunuer</Button>
+
+		<h2>Compteur A: {{ comptA }}</h2>
+		<p>
+			{{ checkCompteur }}
+		</p> 
+		<canvas v-on:mousemove="position">
+			
+		</canvas>
+		<br> <span>{{ x }} / {{ y }}</span>
+
+
+		<br><br> <Button v-on:click="comptB--" >Dimunuer</Button>
+
+  		<h2>Compteur B : {{ comptB }} ||| {{ memo }} </h2>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el: '.MyApp',
+			data:{
+				comptA:0,
+				comptB:0,
+				x:0,
+				y:0,
+			},
+			methods:{
+				augmente : function () {
+					this.comptA++
+				},
+				diminue : function(){
+					this.comptA--
+				},
+				position: function(e){
+					this.x= e.offsetX,
+					this.y=e.offsetY
+				}
+			},
+			computed:{
+				memo: function(){
+					alert("memo s'est lancé ")
+					return this.comptB != 0 ? 'la valeur du compteurB a changé' :' ' 
+				},
+				checkCompteur: function(){
+					alert("la fonction s'est lancée")
+					return this.compt !=0 ? 'supérieur à 10' : 'inférieur à 10'
+				} 
+			}
+		})
+	</script>
+	
+</body>
+</html>
